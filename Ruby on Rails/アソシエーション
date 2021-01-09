@@ -1,0 +1,25 @@
+## テーブルの関連づけによってbuildメソッドの書き方が変わる
+
+newとbuildは同じメソッドだが(buildはnewのエイリアス)、暗黙の了解でbuildが使われることが多い
+
+
+```
+models/user.rb
+
+class User < ActiveRecord::Base
+  has_one :ticket
+end
+```
+
+```
+models/user.rb
+
+class Ticket < ActiveRecord::Base
+  belongs_to :user
+end
+```
+
+```
+@user = User.new
+@card = @user.build_card
+```
